@@ -25,17 +25,22 @@ jobs:
         gradle-version: 6.1.1
         arguments: clean build -S
     # https://github.com/actions/cache/blob/master/examples.md#java---gradle
-    - name: Cache
+    - name: Cache npm
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        #key: ${{ matrix.java }}-${{ matrix.os }}-cache
+        key: java-${{ matrix.java }}-${{ runner.os }}-${{ matrix.os }}-gradle-${{ hashFiles('**/.npm/**') }}
+        restore-keys: |
+          java-${{ matrix.java }}-${{ runner.os }}-${{ matrix.os }}-gradle-
+    - name: Cache gradle
       uses: actions/cache@v1
       with:
         path: ~/.gradle
         #key: ${{ matrix.java }}-${{ matrix.os }}-cache
-        key: ${{ runner.os }}-${{ matrix.java }}-gradle-${{ hashFiles('**/.gradle/**') }}
+        key: java-${{ matrix.java }}-${{ runner.os }}-${{ matrix.os }}-gradle-${{ hashFiles('**/.gradle/**') }}
         restore-keys: |
-          ${{ runner.os }}-${{ matrix.java }}-gradle-
-#        key: ${{ runner.os }}-${{ matrix.java }}-${{ matrix.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-#        restore-keys: |
-#          ${{ runner.os }}-${{ matrix.java }}-${{ matrix.os }}-gradle-
+          java-${{ matrix.java }}-${{ runner.os }}-${{ matrix.os }}-gradle-
     ## This is also works:
     #- name: Cache
     #  uses: actions/cache@v1.1.2
