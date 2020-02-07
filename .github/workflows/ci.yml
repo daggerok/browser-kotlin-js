@@ -6,7 +6,8 @@ jobs:
       matrix:
         # https://github.com/actions/setup-java#matrix-testing
         java: [8, 11]
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest]
+        #os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     name: Java ${{ matrix.java }} on ${{ matrix.os }}
     steps:
