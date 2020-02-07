@@ -4,8 +4,8 @@ jobs:
   build:
     strategy:
       matrix:
-        java: [11]
-        #os: [ubuntu-latest, macos-latest]
+        # https://github.com/actions/setup-java#matrix-testing
+        java: [8, 11]
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     name: Java ${{ matrix.java }} on ${{ matrix.os }}
@@ -20,6 +20,7 @@ jobs:
     - name: Run Multi line commands
       run: |
         echo multi line command...
+    # https://github.com/eskatos/gradle-command-action#setup-and-use-a-declared-gradle-version
     - uses: eskatos/gradle-command-action@v1
       with:
         gradle-version: 6.1.1
@@ -30,7 +31,7 @@ jobs:
       with:
         path: ~/.npm
         #key: ${{ matrix.java }}-${{ matrix.os }}-cache
-        key: java-${{ matrix.java }}-${{ runner.os }}-${{ matrix.os }}-gradle-${{ hashFiles('**/.npm/**') }}
+        key: java-${{ matrix.java }}-${{ runner.os }}-${{ matrix.os }}-gradle-${{ hashFiles('**/node_modules/**') }}
         restore-keys: |
           java-${{ matrix.java }}-${{ runner.os }}-${{ matrix.os }}-gradle-
     - name: Cache gradle
