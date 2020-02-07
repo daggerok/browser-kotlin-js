@@ -27,12 +27,6 @@ dependencies {
 }
 
 kotlin {
-    // // val reactVersion: String by extra
-    // // if you wanna add for instance react library:
-    // sourceSets["main"].dependencies {
-    //     implementation(npm("react", reactVersion))
-    // }
-
     target {
         browser {
             // // if you wanna run browser tests:
@@ -48,6 +42,11 @@ kotlin {
             // }
         }
     }
+    // // val reactVersion: String by extra
+    // // if you wanna add for instance react library:
+    // sourceSets["main"].dependencies {
+    //     implementation(npm("react", reactVersion))
+    // }
 }
 
 tasks {

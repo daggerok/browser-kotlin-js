@@ -1,4 +1,4 @@
-# Kotlin JS
+# Kotlin JS [![CI](https://github.com/daggerok/browser-kotlin-js/workflows/CI/badge.svg?branch=master)](https://github.com/daggerok/browser-kotlin-js/actions)
 It's f@cking awesome!
 
 ```bash
